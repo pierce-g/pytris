@@ -1,4 +1,5 @@
 from GridSpace import GridSpace
+from Piece import Piece
 class Grid:
     def __init__(self, width, height):
         self.width = width
@@ -25,4 +26,19 @@ class Grid:
             str_row += i.display
 
         return str_row
-            
+
+    def clear_screen(self):
+        for r in self.grid_spaces:
+            for c in r:
+                c.display = " "
+
+    def draw_piece(self, piece):
+            row = 0
+            col = 0
+            for i in piece.shape:
+                if i == '.':
+                    self.grid_spaces[row+piece.y][col+piece.x].display = '.'
+                    col += 1
+                elif i == '|':
+                    row +=1
+                    col = 0
